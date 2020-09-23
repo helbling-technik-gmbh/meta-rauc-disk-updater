@@ -1,0 +1,59 @@
+The meta-rauc-disk-updater layer provides support for integrating the
+rauc-disk-updater tool into your device.
+
+Please see the corresponding sections below for details.
+
+
+Dependencies
+============
+
+This layer depends on:
+
+  URI: git:////github.com/rauc/rauc.git
+  layers: meta-rauc
+  branch: master
+
+
+Adding the rauc-disk-updater Layer to Your Build
+================================================
+
+In order to use this layer, you need to make the build system aware of
+it.
+
+Assuming the rauc-disk-updater layer exists at the top-level of your
+yocto build tree, you can add it to the build system by adding the
+location of the rauc layer to bblayers.conf, along with any
+other layers needed. e.g.:
+
+  BBLAYERS ?= " \
+    /path/to/yocto/meta \
+    /path/to/yocto/meta-poky \
+    /path/to/yocto/meta-rauc \
+    /path/to/yocto/meta-rauc-disk-updater \
+    "
+
+
+Adding the rauc-disk-updater to Your Device
+===========================================
+
+To build the rauc-disk-updater client that allows installing bundles from USB
+sticks and SD-cards, simply add `rauc-disk-updater` package to your systems
+image recipe:
+
+  IMAGE_INSTALL_append = " rauc-disk-updater"
+
+
+Maintenance
+===========
+
+Please submit patches via GitHub pull request on https://github.com/helbling-technik-gmbh/rauc-disk-updater
+
+Maintainer: Johannes Fischer <johannes.fischer@helbling.de>
+
+
+License
+=======
+
+All metadata is MIT licensed unless otherwise stated. Source code included
+in tree for individual recipes is under the LICENSE stated in each recipe
+(.bb file) unless otherwise stated.
